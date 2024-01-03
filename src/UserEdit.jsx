@@ -6,10 +6,11 @@ import { createUser, getUser, updateUser } from './UserService';
 import StyledInput from './StyledInput';
 import StyledSelect from './StyledSelect';
 
-const UserEdit = ( props ) => {
+const UserEdit = (props) => {
 
-    const emptyItem = {login: '', lastName: '', firstName: '', password: '', status: 'Active'};
+    const emptyItem = { login: '', lastName: '', firstName: '', password: '', status: 'Active' };
     const userStatusList = ['Active', 'Inactive'];
+    const [fieldsOk, setFieldsOk] = useState(false);
 
     const [item, setItem] = useState(emptyItem);
     const history = useHistory();
@@ -21,15 +22,23 @@ const UserEdit = ( props ) => {
         }
     }, [props.match.params.id])
 
+    useEffect(() => {
+        //Save button should be disabled until all fields are filled
+        if (item.userId) {
+            setFieldsOk(item.login !== '' && item.lastName !== '' && item.firstName !== '');
+        } else {
+            setFieldsOk(item.login !== '' && item.lastName !== '' && item.firstName !== '' && item.password !== '');
+        }
+    }, [item.login, item.lastName, item.firstName, item.password]);
 
     const handleChange = (event) => {
         const { value, name } = event.target;
         setItem({ ...item, [name]: value });
     }
 
-    const handleSubmit =  (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
-        if(item.userId) {
+        if (item.userId) {
             updateUser(item.userId, item);
         } else {
             createUser(item)
@@ -46,12 +55,12 @@ const UserEdit = ( props ) => {
                 <StyledInput label="Identifiant" name="login" onChange={handleChange} value={item.login} disabled={item.userId} />
                 <StyledInput label="Nom" name="lastName" onChange={handleChange} value={item.lastName} />
                 <StyledInput label="Prénom" name="firstName" onChange={handleChange} value={item.firstName} />
-                {!item.userId && <StyledInput type="password" label="Mot de passe" name="password" onChange={handleChange} value={item.password}  />}
+                {!item.userId && <StyledInput type="password" label="Mot de passe" name="password" onChange={handleChange} value={item.password} />}
                 <StyledSelect label="Statut" name="status" options={userStatusList} onChange={handleChange} value={item.status} />
                 <br />
 
                 <FormGroup>
-                    <Button color="primary" type="submit">Save</Button>{' '}
+                    <Button id="saveButton" color="primary" type="submit" disabled={!fieldsOk}>Save</Button>{' '}
                     <Button color="secondary" onClick={() => history.goBack()}>Cancel</Button>
                 </FormGroup>
             </Form>

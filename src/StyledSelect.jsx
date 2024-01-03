@@ -8,11 +8,8 @@ const StyledSelect = ({label, name, value, onChange, options}) => {
         <FormGroup>
             <Label for="name">{label}</Label>
             <Input id="styledSelect" name={name} type="select" value={value}  onChange={onChange}>
-                {options.map(option => <option>{option}</option>)}
-            
-                {/* <option>Active</option> <option>Inactive</option> */}
+                {options.map(option => <option key={option}>{option}</option>)}
                 </Input>
-            {/* <Select defaultValue="Active" onChange={onChange} options={options} disabled={disabled} /> */}
         </FormGroup>
     )
 }
