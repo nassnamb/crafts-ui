@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Container } from 'reactstrap';
 import AppNavbar from './AppNavbar';
 import { Link } from 'react-router-dom';
-import { fetchProfiles, deleteProfile } from './ProfileService';
+import { fetchProfiles, deleteProfile } from './services/ProfileService';
 import StyledProfileTable from './StyledProfileTable';
 import { notification } from 'antd';
 

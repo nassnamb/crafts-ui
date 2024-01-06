@@ -32,22 +32,50 @@ export async function updateUser(userId, data) {
     return await response.json();
 }
 
-export async function deleteUser(userId) {
-    await fetch(`/api/v1/users/delete/byId/${userId}`, {
+export async function deleteUserById(userId) {
+    const response = await fetch(`/api/v1/users/delete/byId/${userId}`, {
         method: 'DELETE',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         }
     });
+    if (!response.ok) {
+        let errorMessage = 'Failed to delete user';
+
+        try {
+            const errorData = await response.json();
+            if (errorData && errorData.message) {
+              errorMessage = errorData.message;
+            }
+          } catch (jsonError) {
+            console.error('Error parsing JSON error response:', jsonError);
+          }
+      
+          throw new Error(errorMessage);
+    }
 }
 
 export async function deleteUserByLogin(login) {
-    await fetch(`/api/v1/users/delete/byLogin/${login}`, {
+    const response = await fetch(`/api/v1/users/delete/byLogin/${login}`, {
         method: 'DELETE',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         }
     });
+    if (!response.ok) {
+        let errorMessage = 'Echec de suppression d\'un utilisateur';
+
+        try {
+            const errorData = await response.json();
+            if (errorData && errorData.message) {
+              errorMessage = errorData.message;
+            }
+          } catch (jsonError) {
+            console.error('Error parsing JSON error response:', jsonError);
+          }
+      
+          throw new Error(errorMessage);
+    }
 }

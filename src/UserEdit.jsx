@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useHistory, withRouter } from 'react-router-dom';
 import { Button, Container, Form, FormGroup } from 'reactstrap';
 import AppNavbar from './AppNavbar';
-import { createUser, getUser, updateUser } from './UserService';
+import { createUser, getUser, updateUser } from './services/UserService';
 import StyledInput from './StyledInput';
 import StyledSelect from './StyledSelect';
+import { failure, getErrorDetails, success } from './utils';
 
 const UserEdit = (props) => {
 
@@ -23,7 +24,7 @@ const UserEdit = (props) => {
     }, [props.match.params.id])
 
     useEffect(() => {
-        //Save button should be disabled until all fields are filled
+        //Save button are disabled until all fields are filled
         if (item.userId) {
             setFieldsOk(item.login !== '' && item.lastName !== '' && item.firstName !== '');
         } else {
@@ -42,6 +43,10 @@ const UserEdit = (props) => {
             updateUser(item.userId, item);
         } else {
             createUser(item)
+            .then(() => success('L\'utilisateur \'' +item.firstName+ ' ' +item.lastName+ '\' a été créé avec succès'))
+            .catch((error) => {
+                failure('échec de création d\'utilisateur', getErrorDetails(error));
+            });
         }
         history.push('/users');
     }
