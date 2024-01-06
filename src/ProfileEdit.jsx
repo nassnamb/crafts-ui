@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory, withRouter } from 'react-router-dom';
 import { Button, Container, Form, FormGroup } from 'reactstrap';
 import AppNavbar from './AppNavbar';
-import { createProfile, getProfile, updateProfile } from './ProfileService';
+import { createProfile, getProfile, updateProfile } from './services/ProfileService';
 import StyledInput from './StyledInput';
 
 const ProfileEdit = ( props ) => {

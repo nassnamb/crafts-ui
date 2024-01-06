@@ -28,11 +28,25 @@ export async function updateProfile(profileId, data) {
 }
 
 export async function deleteProfile(profileId) {
-    await fetch(`/api/v1/profiles/delete/${profileId}`, {
+    const response = await fetch(`/api/v1/profiles/delete/${profileId}`, {
         method: 'DELETE',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         }
     });
+    if (!response.ok) {
+        let errorMessage = 'Echec de suppression d\'un profil';
+
+        try {
+            const errorData = await response.json();
+            if (errorData && errorData.message) {
+              errorMessage = errorData.message;
+            }
+          } catch (jsonError) {
+            console.error('Error parsing JSON error response:', jsonError);
+          }
+      
+          throw new Error(errorMessage);
+    }
 }
