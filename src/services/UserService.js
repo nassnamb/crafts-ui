@@ -19,7 +19,21 @@ export async function createUser(data) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
-    })
+    });
+    if (!response.ok) {
+        let errorMessage = "Echec de création d'un nouveau utilisateur";
+
+        try {
+            const errorData = await response.json();
+            if (errorData && errorData.message) {
+              errorMessage = errorData.message;
+            }
+          } catch (jsonError) {
+            console.error('Error parsing JSON error response:', jsonError);
+          }
+      
+          throw new Error(errorMessage);
+    }
     return await response.json();
 }
 
@@ -28,7 +42,7 @@ export async function updateUser(userId, data) {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
-    })
+    });
     return await response.json();
 }
 

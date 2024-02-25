@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+
+.center-container {
+  display: flex;
+  justify-content: center;
+  /*align-items: center;*/
+  height: 8vh; /* Ajustez la hauteur selon vos besoins */
+  margin: 0 250px; /* Ajustez la marge selon vos besoins */
+}
