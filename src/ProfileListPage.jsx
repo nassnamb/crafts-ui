@@ -4,7 +4,6 @@ import AppNavbar from './AppNavbar';
 import { Link } from 'react-router-dom';
 import { fetchProfiles, deleteProfile } from './services/ProfileService';
 import StyledProfileTable from './StyledProfileTable';
-import { notification } from 'antd';
 
 const ProfileListPage = () => {
 
@@ -23,29 +22,14 @@ const ProfileListPage = () => {
             })
     }
 
-    const failure = (msg) => {
-
-    }
-
-    const success = (msg) => {
-        notification['success']({
-            placement: "topRight",
-            duration: 10,
-            top: 70,
-            message: msg
-
-        })
-
-    }
-
     return (
         <div>
             <AppNavbar /><br/>
             <Container fluid>
                 <div className="float-right">
-                    <Button color="success" tag={Link} to="/profiles/new">Add profile</Button>
+                    <Button color="success" tag={Link} to="/profiles/new">Ajouter profil</Button>
                 </div> <br/>
-                <h3>Profiles</h3> 
+                <h3>Profils</h3> 
                 <StyledProfileTable data={profiles} remove={remove} />
             </Container>
         </div>

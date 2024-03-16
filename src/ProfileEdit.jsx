@@ -3,7 +3,7 @@ import { useHistory, withRouter } from 'react-router-dom';
 import { Button, Container, Form, FormGroup } from 'reactstrap';
 import AppNavbar from './AppNavbar';
 import { createProfile, getProfile, updateProfile } from './services/ProfileService';
-import StyledInput from './StyledInput';
+import StyledInput from './utils/StyledInput';
 
 const ProfileEdit = ( props ) => {
 
@@ -43,9 +43,9 @@ const ProfileEdit = ( props ) => {
     return (<div>
         <AppNavbar />
         <Container>
-            <h2>{item.profileId ? 'Edit Profile' : 'Add Profile'}</h2>
+            <h2>{item.profileId ? 'Modification Profil' : 'Ajout Profil'}</h2>
             <Form onSubmit={handleSubmit}>
-                <StyledInput label="Profile" name="profileId" onChange={handleChange} value={item.profileId} disabled={!show} />
+                <StyledInput label="Profil" name="profileId" onChange={handleChange} value={item.profileId} disabled={!show} />
                 <StyledInput label="Description" name="description" onChange={handleChange} value={item.description} />
                 <br />
 

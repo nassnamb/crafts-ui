@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { fetchUsers, deleteUserById, getUser } from './services/UserService';
 import StyledUserTable from './StyledUserTable';
 import { failure, getErrorDetails, success } from './utils';
+import UserCriteria from './UserCriteria';
 
 const UserListPage = () => {
 
@@ -24,7 +25,7 @@ const UserListPage = () => {
             .then(() => {
                 let updatedUsers = [...users].filter(i => i.userId !== id);
                 setUsers(updatedUsers);
-                success('L\'utilisateur avec l\'id \''+id+'\' a été supprimé avec succès');
+                success("L'utilisateur avec l'id '"+id+"' a été supprimé avec succès");
             }).catch((error) => {
                 getUser(id).then(user => failure('Echec de suppression de l\'utilisateur : '+user.login, getErrorDetails(error)));  
             });
@@ -39,6 +40,7 @@ const UserListPage = () => {
                     <Button color="success" tag={Link} to="/users/new">Ajout Utilisateur</Button>
                 </div> <br />
                 <h3>Liste des Utilisateurs</h3>
+                <UserCriteria />
                 <StyledUserTable data={users} remove={remove} />
             </Container>
         </div>
