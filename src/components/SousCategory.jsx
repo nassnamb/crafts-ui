@@ -27,14 +27,14 @@ const CardWrapper = styled.div`
   justify-content: space-around;
   padding: 15px;
   border-radius: 30px;
-  width: 300px;
-  height: 300px;
+  width: 200px;
+  height: 200px;
   &:hover {
     cursor: pointer;
   }
 `
 
-function Category({ label, picture }) {
+function SousCategory({ label, picture }) {
 
 
     return (
@@ -45,14 +45,14 @@ function Category({ label, picture }) {
     )
 }
 
-Category.propTypes = {
+SousCategory.propTypes = {
     label: PropTypes.string.isRequired,
     picture: PropTypes.string.isRequired,
 }
 
-Category.defaultProps = {
+SousCategory.defaultProps = {
     label: '',
     picture: '',
 }
 
-export default Category
+export default SousCategory
