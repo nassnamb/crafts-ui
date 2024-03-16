@@ -1,9 +1,7 @@
 import React, {useState} from 'react';
-import './App.css';
 import AppNavbar from './AppNavbar';
 import { Container} from "reactstrap";
 import Category from "./components/Category";
-import styled from "styled-components";
 import {Link} from "react-router-dom";
 
 const Home = () => {
