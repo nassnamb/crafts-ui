@@ -9,6 +9,7 @@ import UserMenu from './menu/UserMenu';
 import UserListPage from './UserListPage';
 import UserDetails from './UserDetails';
 import UserEdit from './UserEdit';
+import CoursParticuliers from './CoursParticuliers';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path='/users/details' exact={true} component={UserDetails}/>
             <Route path='/profiles/:id' component={ProfileEdit}/>
             <Route path='/users/:id' exact={true} component={UserEdit}/>
+            <Route path='/cours-particuliers' exact={true} component={CoursParticuliers}/>
             <Route render={() => <h1>404: page not found</h1>} />
           </Switch>
         </Router>
