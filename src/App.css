@@ -36,3 +36,31 @@
     transform: rotate(360deg);
   }
 }
+
+.center-container {
+  display: flex;
+  justify-content: center;
+  /*align-items: center;*/
+  height: 8vh; /* Ajustez la hauteur selon vos besoins */
+  margin: 0 250px; /* Ajustez la marge selon vos besoins */
+}
+
+.CardsContainer {
+  display: grid;
+  gap: 24px;
+  grid-template-rows: auto;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  justify-items: center;
+}
+
+.CardsContainer img {
+  border-radius: 8px;
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.CardsContainer img:hover {
+  transform: scale(1.1);
+}

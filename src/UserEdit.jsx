@@ -3,8 +3,8 @@ import { useHistory, withRouter } from 'react-router-dom';
 import { Button, Container, Form, FormGroup } from 'reactstrap';
 import AppNavbar from './AppNavbar';
 import { createUser, getUser, updateUser } from './services/UserService';
-import StyledInput from './StyledInput';
-import StyledSelect from './StyledSelect';
+import StyledInput from './utils/StyledInput';
+import StyledSelect from './utils/StyledSelect';
 import { failure, getErrorDetails, success } from './utils';
 
 const UserEdit = (props) => {
@@ -55,7 +55,7 @@ const UserEdit = (props) => {
     return (<div>
         <AppNavbar />
         <Container>
-            <h2>{item.userId ? 'Edit User' : 'Add User'}</h2>
+            <h2>{item.userId ? 'Mofification Utilisateur' : 'Ajout Utilisateur'}</h2>
             <Form onSubmit={handleSubmit}>
                 <StyledInput label="Identifiant" name="login" onChange={handleChange} value={item.login} disabled={item.userId} />
                 <StyledInput label="Nom" name="lastName" onChange={handleChange} value={item.lastName} />
