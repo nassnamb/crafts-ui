@@ -21,6 +21,8 @@ import Evenementiel from "./Evenementiel";
 import Construction from "./Construction";
 import Beaute from "./Beaute";
 import Nettoyage from "./Nettoyage";
+import LogistiqueTransport from "./LogistiqueTransport";
+import StepsForBooking from "./StepsForBooking";
 
 function App() {
   return (
@@ -47,7 +49,8 @@ function App() {
             <Route path='/beaute' exact={true} component={Beaute}/>
             <Route path='/nettoyage' exact={true} component={Nettoyage}/>
             <Route path='/aide-domicile' exact={true} component={AideDomicile}/>
-            <Route path='/logistique-transport' exact={true} component={logistiqueTransport}/>
+            <Route path='/logistique-transport' exact={true} component={LogistiqueTransport}/>
+            <Route path='/etapes' exact={true} component={StepsForBooking}/>
             <Route render={() => <h1>404: page not found</h1>} />
           </Switch>
         </Router>
